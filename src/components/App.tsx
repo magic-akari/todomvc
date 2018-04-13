@@ -59,8 +59,10 @@ export class TodoApp extends React.Component<IAppProps, IAppState> {
 		event.preventDefault();
 		const input = event.target as HTMLInputElement;
 		const value = input.value.trim();
-		this.props.model.addTodo(value);
-		input.value = "";
+		if (value.length > 0) {
+			this.props.model.addTodo(value);
+			input.value = "";
+		}
 	};
 
 	toggleAll = (event: React.ChangeEvent<HTMLInputElement>) => {
