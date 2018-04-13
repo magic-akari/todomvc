@@ -5,6 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>TypeScript + ESM • TodoMVC</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/todomvc-common@1/base.min.css,npm/todomvc-app-css@2/index.min.css">
+		<script src="./models/store.js" type="module"></script>
+		<script src="./models/todoModel.js" type="module"></script>
+		<script src="./components/Header.js" type="module"></script>
+		<script src="./components/Footer.js" type="module"></script>
+		<script src="./components/TodoItem.js" type="module"></script>
+		<script src="./components/App.js" type="module"></script>
+		<script src="./app.js" type="module"></script>
 	</head>
 	<body>
 		<section class="todoapp"></section>
@@ -14,13 +21,6 @@
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
 		<script src="https://cdn.jsdelivr.net/combine/npm/react@16/umd/react.production.min.js,npm/react-dom@16/umd/react-dom.production.min.js"></script>
-		<script src="./models/store.js" type="module"></script>
-		<script src="./models/todoModel.js" type="module"></script>
-		<script src="./components/Header.js" type="module"></script>
-		<script src="./components/Footer.js" type="module"></script>
-		<script src="./components/TodoItem.js" type="module"></script>
-		<script src="./components/App.js" type="module"></script>
-		<script src="./app.js" type="module"></script>
 		<script src="./app.nomodule.js" nomodule></script>
 	</body>
 </html>
