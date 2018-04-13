@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+const { promisify } = require("util");
+const { resolve } = require("path");
+const fs = require("fs");
+const readdir = promisify(fs.readdir);
+const stat = promisify(fs.stat);
+const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
+
+/**
+ *
+ * @param {string}
+ * @returns {string[]}
+ */
+const getFiles = async dir => {
+	const subdirs = await readdir(dir);
+	const files = await Promise.all(
+		subdirs.map(async subdir => {
+			const res = resolve(dir, subdir);
+			return (await stat(res)).isDirectory() ? getFiles(res) : res;
+		})
+	);
+	return files.reduce((a, f) => a.concat(f), []);
+};
+
+const args = process.argv.slice(2);
+
+if (args.length !== 2) {
+	console.error("invalid array arguments");
+	process.exit(1);
+}
+
+const main = async () => {
+	const start = resolve(process.cwd(), args[0]);
+	const output = resolve(process.cwd(), args[1]);
+
+	const allFiles = await getFiles(start);
+
+	const jsFiles = allFiles.filter(
+		path => path.endsWith(".js") && path !== output
+	);
+
+	const contentList = [];
+	for (const path of jsFiles) {
+		const content = await readFile(path, { encoding: "utf-8" });
+		contentList.push(content);
+	}
+
+	const allContent = contentList.join("\n");
+
+	const erased = allContent.replace(
+		/\/\/# sourceMappingURL=.*|import.*|export\s(?:default.*)?(?:{.*})?/g,
+		""
+	);
+
+	await writeFile(output, erased);
+};
+
+main();
