@@ -1,7 +1,28 @@
 {
+  "name": "todomvc",
+  "version": "1.0.0",
+  "description": "TodoMVC with TypeScript and ESM",
   "private": true,
-  "dependencies": {
-    "todomvc-app-css": "^2.0.0",
-    "todomvc-common": "^1.0.0"
+  "scripts": {
+    "prebuild": "rm -rf dist/*",
+    "build": "tsc && node ./scripts/naivepack dist dist/app.nomodule.js",
+    "postbuild": "cp index.html dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magic-akari/todomvc.git"
+  },
+  "keywords": [],
+  "author": "阿卡琳",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magic-akari/todomvc/issues"
+  },
+  "homepage": "https://github.com/magic-akari/todomvc#readme",
+  "devDependencies": {
+    "@types/react": "^16.3.9",
+    "@types/react-dom": "^16.0.5",
+    "typescript": "^2.8.1"
   }
 }
