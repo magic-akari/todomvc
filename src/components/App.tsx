@@ -154,20 +154,23 @@ export class TodoApp extends React.Component<IAppProps, IAppState> {
 	}
 
 	render() {
-		return [
-			<Header key="Header" onAddTodo={this.add} />,
-
-			this.props.model.todos.length > 0
-				? [
-						this.Main,
-						Footer({
+		return (
+			<>
+				<Header key="Header" onAddTodo={this.add} />
+				{this.props.model.todos.length > 0 ? (
+					<>
+						{this.Main}
+						{Footer({
 							activeTodoCount: this.activeTodoCount,
 							hasCompCompleted: this.hasCompCompleted,
 							onClearCompleted: this.clearCompleted,
 							nowShowing: this.state.nowShowing
-						})
-				  ]
-				: false
-		];
+						})}
+					</>
+				) : (
+					false
+				)}
+			</>
+		);
 	}
 }

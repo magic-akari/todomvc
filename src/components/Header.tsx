@@ -6,7 +6,7 @@ interface IHeaderProps {
 	onAddTodo(event: React.KeyboardEvent<HTMLInputElement>): void;
 }
 
-export const Header = (props: IHeaderProps) => (
+export const Header: React.SFC<IHeaderProps> = props => (
 	<header className="header">
 		<h1>todos</h1>
 		<input

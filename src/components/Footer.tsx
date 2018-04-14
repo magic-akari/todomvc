@@ -11,7 +11,7 @@ interface IFooterProps {
 	onClearCompleted: () => void;
 }
 
-export const Footer = (props: IFooterProps) => (
+export const Footer: React.SFC<IFooterProps> = props => (
 	<footer className="footer" key="Footer">
 		<span className="todo-count">
 			<strong>{props.activeTodoCount}</strong>{" "}
