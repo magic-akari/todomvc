@@ -1,8 +1,6 @@
-# TypeScript + ESM • [TodoMVC](http://todomvc.com)
+# TypeScript + ESM • TodoMVC
 
 Use ECMAScript Module instead of packing your source file.
-
-[Demo](https://magic-akari.github.io/todomvc)
 
 ## Note
 Only support modern browser.
