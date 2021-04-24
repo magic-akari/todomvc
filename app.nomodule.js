@@ -46,7 +46,7 @@ class TodoApp extends React.Component {
         this.clearCompleted = () => {
             this.props.model.clearCompleted();
         };
-        this.props.model.subscribe(this.setState.bind(this, {}));
+        this.props.model.subscribe(this.setState.bind(this));
     }
     componentDidMount() {
         window.addEventListener("hashchange", () => {
