@@ -24,7 +24,7 @@ interface IAppProps {
 export class TodoApp extends React.Component<IAppProps, IAppState> {
 	constructor(props: IAppProps) {
 		super(props);
-		this.props.model.subscribe(this.setState.bind(this, {}));
+		this.props.model.subscribe(this.setState.bind(this, this.state));
 	}
 
 	public state: IAppState = {

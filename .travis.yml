@@ -1,12 +1,20 @@
 language: node_js
 node_js: node
-script: npm run build
-before_deploy: touch ./dist/.nojekyll
+script: pnpm run pnpmbuild
+cache:
+  npm: false
+  directories:
+    - "~/.pnpm-store"
+before_install:
+  - curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
+  - pnpm config set store-dir ~/.pnpm-store
+install:
+  - pnpm install
+before_deploy:
+  - touch ./dist/.nojekyll
 deploy:
-- provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  keep-history: false
-  local-dir: dist
-  on:
-    branch: master
+  - provider: pages
+    edge: true
+    local_dir: dist
+    on:
+      branch: master
